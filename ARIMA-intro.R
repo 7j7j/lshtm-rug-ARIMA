@@ -1,6 +1,6 @@
 ###########################################################
 ## An intro to time series forecasting with ARIMA        ##
-## R Ladies London 24 October 2019 workshop              ##
+## LSHTM R Users Group 17 Dec 2020                       ##
 ## Sample code by julia.shen1@lshtm.ac.uk                ##
 ###########################################################
 
@@ -21,22 +21,22 @@ data_orig <- read.csv(here::here('ARIMA-intro.csv')) # load example data
 ### 1. Clean up date formats for an analysis file   ###
 
 str(data_orig) # examine data structure
-levels(data_orig$ï..month) # note "ï..month" imported as an icky factor var
+levels(data_orig$Ã¯..month) # note "Ã¯..month" imported as an icky factor var
 
 # specify a new date variable with day-month-year to replace the disaggregated factor vars
 # nb NHS sitrep data from last Thursday of each month, so pick arbitrary consistent date 24
 # nb Green et al (2017) analysis is based on 2010/08 to 2015/03, as reflected in plots etc
 
 data_use <- data_orig %>% 
-  mutate(ï..month=as.character(ï..month)) %>%  # change factor var to a string
-  mutate(date=paste0('24', ï..month, year, sep = "", collapse = NULL)) %>% #combine strings
+  mutate(Ã¯..month=as.character(Ã¯..month)) %>%  # change factor var to a string
+  mutate(date=paste0('24', Ã¯..month, year, sep = "", collapse = NULL)) %>% #combine strings
   mutate(date=as.Date(date, "%d%B%Y")) # convert string to date
 
 # check this worked and some cleanup below
 str(data_use) 
 
 data_use <- data_use %>% 
-  select(-ï..month, -year)
+  select(-Ã¯..month, -year)
 view(data_use)
 
 rm(data_orig)
